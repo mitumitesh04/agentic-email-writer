@@ -1,0 +1,25 @@
+# test_emails.txt - Sample bullet points for testing
+
+# Test Case 1: Meeting Request
+meeting with sarah next friday
+discuss q4 budget planning
+need her input on new proposals
+bring financial reports
+
+# Test Case 2: Complaint/Issue
+server was down yesterday
+customers couldnt access website
+need explanation and prevention plan
+this is third time this month
+
+# Test Case 3: Thank You
+thanks for great presentation yesterday
+learned a lot about new process
+would like to discuss implementation
+maybe coffee next week?
+
+# Test Case 4: Urgent Request
+need budget approval asap
+client meeting tomorrow morning
+contract depends on this decision
+please review attached proposal
