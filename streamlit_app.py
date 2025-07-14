@@ -1,4 +1,3 @@
-# streamlit_app.py - Updated for Agentic Email Agent with TinyLlama
 import streamlit as st
 import json
 from email_agent import AgenticEmailAgent
@@ -18,16 +17,16 @@ def initialize_agent():
 def main():
     st.set_page_config(
         page_title="🤖 Agentic Email Generator",
-        page_icon="🤖",
+        page_icon="",
         layout="wide"
     )
     
-    st.title("🤖 Agentic Email Generator")
-    st.markdown("**AI-powered autonomous email creation - 100% on-device using TinyLlama**")
+    st.title(" Agentic Email Generator")
+    st.markdown("**AI-powered autonomous email creation  using *qwen2.5:0.5b*")
     
     # Initialize agent
     if 'agent' not in st.session_state or 'agent_error' not in st.session_state:
-        with st.spinner("🤖 Initializing AI agent..."):
+        with st.spinner(" Initializing AI agent..."):
             agent, error = initialize_agent()
             st.session_state.agent = agent
             st.session_state.agent_error = error
@@ -38,7 +37,7 @@ def main():
     # Show status
     if error:
         st.error(error)
-        st.info("💡 Make sure you have run: `ollama pull tinyllama`")
+        st.info(" Make sure you have run: `ollama pull tinyllama`")
         
         if st.button("🔄 Retry Connection"):
             del st.session_state.agent
@@ -49,13 +48,13 @@ def main():
     
     # Sidebar - Agentic Settings
     with st.sidebar:
-        st.header("🤖 Agentic AI Settings")
+        st.header(" Agentic AI Settings")
         
         if agent and agent.model:
-            st.success(f"✅ AI Model: {agent.model}")
-            st.info("🧠 Truly agentic behavior - AI makes all decisions")
+            st.success(f" AI Model: {agent.model}")
+            st.info(" Truly agentic behavior - AI makes all decisions")
         
-        st.markdown("### 🎯 Agentic Features:")
+        st.markdown("###  Agentic Features:")
         st.markdown("• **Autonomous Analysis** - AI decides context")
         st.markdown("• **Strategic Thinking** - AI chooses approach") 
         st.markdown("• **Creative Writing** - AI crafts content")
@@ -65,11 +64,11 @@ def main():
         st.header("⚙️ Generation Mode")
         mode = st.selectbox(
             "Choose mode:",
-            ["🤖 Full Autonomy", "🎨 Creative Variations", "📈 Strategic Analysis"]
+            [" Full Autonomy", " Creative Variations", " Strategic Analysis"]
         )
         
         # Advanced settings
-        with st.expander("🔬 Advanced AI Settings"):
+        with st.expander(" Advanced AI Settings"):
             creativity = st.slider("AI Creativity", 0.1, 1.0, 0.4, 0.1)
             max_length = st.slider("Response Length", 200, 800, 400, 50)
     
@@ -77,7 +76,7 @@ def main():
     col1, col2 = st.columns([1, 1])
     
     with col1:
-        st.header("📝 Input")
+        st.header(" Input")
         
         # Bullet points input
         bullet_points = st.text_area(
@@ -88,7 +87,7 @@ def main():
         )
         
         # Generate button
-        if st.button("🚀 Generate Agentic Email", type="primary", use_container_width=True):
+        if st.button(" Generate Agentic Email", type="primary", use_container_width=True):
             if not agent:
                 st.error("❌ AI agent not available")
             elif bullet_points.strip():
@@ -115,29 +114,24 @@ def main():
         # Show selected example
         if 'example_text' in st.session_state:
             st.text_area("Selected Example:", value=st.session_state.example_text, height=100, disabled=True)
-            if st.button("📋 Use This Example"):
+            if st.button(" Use This Example"):
                 st.session_state.bullet_input = st.session_state.example_text
                 st.rerun()
     
     with col2:
-        st.header("📧 AI-Generated Results")
+        st.header(" AI-Generated Results")
         
         if 'email_result' not in st.session_state:
             st.info("👈 Enter bullet points and click 'Generate Agentic Email' to see AI autonomous decision-making in action!")
             
-            # Show what makes it agentic
-            st.markdown("### 🧠 What Makes This Agentic?")
-            st.markdown("• **Autonomous Context Analysis** - AI decides purpose, tone, relationship")
-            st.markdown("• **Strategic Decision Making** - AI chooses optimal communication approach") 
-            st.markdown("• **Creative Problem Solving** - AI adapts structure and language")
-            st.markdown("• **Intelligent Optimization** - AI suggests improvements")
+            
         else:
             display_results(st.session_state.email_result)
 
 def generate_email(agent, bullet_points, mode, creativity, max_length):
     """Generate email using agentic AI"""
     try:
-        if mode == "🤖 Full Autonomy":
+        if mode == " Full Autonomy":
             # Full autonomous generation
             result = agent.generate_email_agentically(bullet_points)
             analysis = agent.analyze_context_agentically(bullet_points)
@@ -150,7 +144,7 @@ def generate_email(agent, bullet_points, mode, creativity, max_length):
                 'suggestions': suggestions
             }
             
-        elif mode == "🎨 Creative Variations":
+        elif mode == " Creative Variations":
             # Multiple agentic approaches
             variations = agent.generate_tone_variations_agentically(bullet_points)
             
@@ -159,7 +153,7 @@ def generate_email(agent, bullet_points, mode, creativity, max_length):
                 'data': variations
             }
             
-        elif mode == "📈 Strategic Analysis":
+        elif mode == " Strategic Analysis":
             # Strategic analysis + email
             strategy = agent.autonomous_email_strategy(bullet_points)
             result = agent.generate_email_agentically(bullet_points)
@@ -175,8 +169,8 @@ def generate_email(agent, bullet_points, mode, creativity, max_length):
         st.rerun()
         
     except Exception as e:
-        st.error(f"❌ AI generation failed: {str(e)}")
-        st.info("💡 Make sure TinyLlama is running: `ollama list` should show tinyllama")
+        st.error(f" AI generation failed: {str(e)}")
+        st.info(" Make sure TinyLlama is running: `ollama list` should show tinyllama")
 
 def display_results(result):
     """Display the AI-generated results"""
@@ -188,7 +182,7 @@ def display_results(result):
         suggestions = result.get('suggestions', [])
         
         # Show AI's autonomous decisions
-        with st.expander("🧠 AI's Autonomous Analysis & Decisions", expanded=True):
+        with st.expander(" AI's Autonomous Analysis & Decisions", expanded=True):
             col_a, col_b = st.columns(2)
             with col_a:
                 st.metric("AI-Detected Purpose", analysis.get('purpose', 'N/A'))
@@ -203,12 +197,12 @@ def display_results(result):
         
         # Subject line
         subject = email_data.get('subject', 'No Subject')
-        st.text_input("🎯 AI-Optimized Subject:", value=subject, disabled=True)
+        st.text_input(" AI-Optimized Subject:", value=subject, disabled=True)
         
         # Email content
         email_body = email_data.get('full_email', 'Error generating email')
         st.text_area(
-            "📧 AI-Generated Email (Select All & Copy):",
+            " AI-Generated Email (Select All & Copy):",
             value=email_body,
             height=400,
             help="Select all text (Ctrl+A) and copy (Ctrl+C)"
@@ -217,12 +211,12 @@ def display_results(result):
         # Copy options
         col_copy1, col_copy2 = st.columns(2)
         with col_copy1:
-            with st.expander("📋 Copy-Friendly Format"):
+            with st.expander(" Copy-Friendly Format"):
                 st.code(email_body, language=None)
         
         with col_copy2:
             st.download_button(
-                "📥 Download Email",
+                " Download Email",
                 data=email_body,
                 file_name=f"agentic_email_{subject.replace(' ', '_').lower()}.txt",
                 mime="text/plain"
@@ -230,8 +224,8 @@ def display_results(result):
         
         # AI suggestions
         if suggestions:
-            with st.expander("💡 AI's Improvement Suggestions"):
-                st.markdown("**🤖 Autonomous optimization recommendations:**")
+            with st.expander(" AI's Improvement Suggestions"):
+                st.markdown("** Autonomous optimization recommendations:**")
                 for i, suggestion in enumerate(suggestions, 1):
                     st.write(f"{i}. {suggestion}")
     
@@ -239,9 +233,9 @@ def display_results(result):
         # Multiple agentic variations
         variations = result['data']
         
-        st.markdown("### 🎨 AI's Creative Variations")
+        st.markdown("###  AI's Creative Variations")
         
-        tabs = st.tabs([f"🎯 {var.get('approach', var.get('tone_used', 'Version')).title()}" for var in variations])
+        tabs = st.tabs([f" {var.get('approach', var.get('tone_used', 'Version')).title()}" for var in variations])
         
         for tab, variation in zip(tabs, variations):
             with tab:
@@ -261,7 +255,7 @@ def display_results(result):
                 )
                 
                 st.download_button(
-                    f"📥 Download {variation.get('approach', 'This')} Version",
+                    f" Download {variation.get('approach', 'This')} Version",
                     data=email_content,
                     file_name=f"agentic_{variation.get('tone_used', 'version')}.txt",
                     mime="text/plain",
@@ -275,11 +269,11 @@ def display_results(result):
         strategy = result.get('strategy', {})
         
         # Strategic analysis
-        st.subheader("📈 AI's Strategic Communication Analysis")
+        st.subheader(" AI's Strategic Communication Analysis")
         st.markdown(strategy.get('strategy_analysis', 'No strategic analysis available'))
         
         # Generated email
-        st.subheader("📧 Strategically Optimized Email")
+        st.subheader(" Strategically Optimized Email")
         
         subject = email_data.get('subject', 'No Subject')
         st.text_input("Subject:", value=subject, disabled=True)
@@ -292,7 +286,7 @@ def display_results(result):
         )
         
         st.download_button(
-            "📥 Download Strategic Email",
+            " Download Strategic Email",
             data=email_body,
             file_name=f"strategic_email_{subject.replace(' ', '_').lower()}.txt",
             mime="text/plain"
@@ -307,8 +301,8 @@ def display_results(result):
             st.rerun()
     
     with col_btn2:
-        if st.button("🎨 Try Different Mode", use_container_width=True):
-            st.info("💡 Change the generation mode in the sidebar and generate again")
+        if st.button(" Try Different Mode", use_container_width=True):
+            st.info(" Change the generation mode in the sidebar and generate again")
 
 if __name__ == "__main__":
     main()

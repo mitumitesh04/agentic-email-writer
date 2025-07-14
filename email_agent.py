@@ -9,7 +9,7 @@ class AgenticEmailAgent:
         self.model = self.find_working_model()
         
         if not self.model:
-            raise Exception("❌ qwen2.5:0.5b model not found. Please install it with: ollama pull qwen2.5:0.5b")
+            raise Exception(" qwen2.5:0.5b model not found. Please install it with: ollama pull qwen2.5:0.5b")
     
     def find_working_model(self):
         """Find qwen2.5:0.5b model specifically"""
@@ -33,16 +33,16 @@ class AgenticEmailAgent:
                 if 'qwen2.5:0.5b' in model_name:
                     # Return just the clean model name
                     clean_name = "qwen2.5:0.5b"
-                    print(f"✅ Using qwen2.5:0.5b model")
+                    print(f" Using qwen2.5:0.5b model")
                     return clean_name
             
             # If qwen2.5:0.5b not found, fail
-            print("❌ qwen2.5:0.5b model not found")
-            print("💡 Please install it with: ollama pull qwen2.5:0.5b")
+            print(" qwen2.5:0.5b model not found")
+            print(" Please install it with: ollama pull qwen2.5:0.5b")
             return None
                 
         except Exception as e:
-            print(f"❌ Error finding qwen2.5:0.5b model: {e}")
+            print(f" Error finding qwen2.5:0.5b model: {e}")
             return None
     
     def analyze_context_agentically(self, bullet_points: str) -> Dict:
@@ -336,11 +336,11 @@ def test_agentic_agent():
         
         test_bullets = "meeting with sarah tomorrow, need budget approval, project deadline next week"
         
-        print("🤖 Testing Agentic Analysis...")
+        print(" Testing Agentic Analysis...")
         context = agent.analyze_context_agentically(test_bullets)
         print(f"AI Decision: {context}")
         
-        print("\n🤖 Testing Agentic Email Generation...")
+        print("\n Testing Agentic Email Generation...")
         email = agent.generate_email_agentically(test_bullets)
         print(f"Subject: {email['subject']}")
         print(f"Preview: {email['full_email'][:200]}...")
