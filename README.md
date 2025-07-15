@@ -1,4 +1,4 @@
-# 🤖 Agentic Email Generator
+#  Agentic Email Generator
 
 An AI-powered Streamlit app that autonomously generates professional emails based on user-provided bullet points. It uses the `qwen2.5:0.5b` model via [Ollama](https://ollama.com) to analyze context, write emails, generate subject lines, and provide strategic insights.
 
@@ -35,7 +35,7 @@ An AI-powered Streamlit app that autonomously generates professional emails base
 4. **Run the App:**
    ```bash
     streamlit run streamlit_app.py
-    Open in your browser at http://localhost:8501
+Open in your browser at http://localhost:8501
 ---
 ## Author
 **Built by Mitesh J Upadhya**
